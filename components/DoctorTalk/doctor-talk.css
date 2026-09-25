@@ -1,0 +1,84 @@
+.medi-doctor-talk {
+  padding: 74px 0 60px;
+  background: #fff;
+  color: #171717;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+.medi-doctor-talk .medi-doctor-talk-container {
+  padding-inline: 12px;
+}
+
+.medi-doctor-talk h2 {
+  margin: 0 0 28px;
+  text-align: center;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.6px;
+}
+
+.medi-doctor-talk-intro {
+  margin: -12px auto 28px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.medi-doctor-talk-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 34px;
+}
+
+.medi-doctor-talk-item { min-width: 0; }
+
+.medi-doctor-talk-player {
+  overflow: hidden;
+  border-radius: 14px;
+  background: #171717;
+  color-scheme: normal;
+}
+
+.medi-doctor-talk-player iframe {
+  display: block;
+  border: 0;
+}
+
+.medi-doctor-talk-source {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #555;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.medi-doctor-talk-source:hover {
+  color: #073ba3;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.medi-doctor-talk-source:focus-visible {
+  outline: 2px solid #073ba3;
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+@media (max-width: 1099.98px) {
+  .medi-doctor-talk .medi-doctor-talk-container { padding-inline: 24px; }
+  .medi-doctor-talk-grid { gap: 24px; }
+}
+
+@media (max-width: 767.98px) {
+  .medi-doctor-talk { padding: 48px 0 36px; }
+  .medi-doctor-talk h2 { font-size: 30px; }
+  .medi-doctor-talk-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+}
+
+@media (max-width: 575.98px) {
+  .medi-doctor-talk .medi-doctor-talk-container { padding-inline: 20px; }
+  .medi-doctor-talk h2 { font-size: 28px; margin-bottom: 24px; }
+  .medi-doctor-talk-player { border-radius: 12px; }
+}

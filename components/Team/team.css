@@ -1,0 +1,67 @@
+.medi-team {
+  padding: 58px 0 64px;
+  background: linear-gradient(180deg, #fae5f6 0%, #ebdff5 48%, #c9edfc 100%);
+  color: #171717;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+.medi-team .medi-team-container { padding-inline: 12px; }
+.medi-team h2 { margin: 0 0 14px; text-align: center; font-size: 36px; line-height: 1.2; font-weight: 400; letter-spacing: -0.6px; }
+.medi-team-intro { margin: 0 auto 30px; text-align: center; font-size: 13px; line-height: 1.5; }
+.medi-team-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.medi-team-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-end;
+  min-width: 0;
+  aspect-ratio: 245 / 327;
+  overflow: hidden;
+  border-radius: 22px;
+  background: #25303a;
+  color: #fff;
+}
+.medi-team-card > img { object-fit: cover; object-position: center top; z-index: -2; }
+.medi-team-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(180deg, transparent 35%, rgb(0 0 0 / 15%) 55%, rgb(0 0 0 / 80%) 100%);
+}
+.medi-team-card-copy { width: 100%; padding: 18px 20px; }
+.medi-team-card h3 { margin: 0 0 4px; font-size: 15px; font-weight: 600; line-height: 1.3; letter-spacing: -0.35px; }
+.medi-team-card p { margin: 0; font-size: 11px; line-height: 1.5; color: #f5f5f5; }
+.medi-team-footer { margin-top: 28px; }
+.medi-team .medi-team-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 45px;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 50px;
+  background: linear-gradient(180deg, #ed00e9 0%, #a538fa 52%, #298bff 100%);
+  color: #fff;
+  font-size: 13px;
+}
+.medi-team .medi-team-all:hover { color: #fff; filter: brightness(1.08); }
+.medi-team-all:focus-visible { outline: 2px solid #073ba3; outline-offset: 4px; }
+@media (max-width: 1099.98px) {
+  .medi-team .medi-team-container { padding-inline: 24px; }
+  .medi-team-card-copy { padding: 18px 14px; }
+}
+@media (max-width: 991.98px) {
+  .medi-team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .medi-team h2 { font-size: 32px; }
+  .medi-team-card-copy { padding: 20px; }
+  .medi-team-card h3 { font-size: 18px; }
+  .medi-team-card p { font-size: 13px; }
+}
+@media (max-width: 575.98px) {
+  .medi-team { padding: 44px 0 48px; }
+  .medi-team .medi-team-container { padding-inline: 20px; }
+  .medi-team h2 { font-size: 28px; }
+  .medi-team-intro { font-size: 14px; line-height: 1.6; margin-bottom: 26px; }
+  .medi-team-grid { grid-template-columns: minmax(0, 1fr); margin-inline: auto; }
+  .medi-team-card { border-radius: 20px; }
+}

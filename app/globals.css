@@ -1,0 +1,97 @@
+:root {
+  --bs-font-sans-serif: var(--font-inter), Arial, Helvetica, sans-serif;
+  --bs-body-font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+html {
+  height: 100%;
+}
+
+html,
+body {
+  font-weight: 400;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+}
+
+/* Shared card interaction: keep touch layouts stable and respect reduced motion. */
+:is(.medi-about-card, .medi-about-brand, .medi-service-card, .medi-doctor-talk-player, .medi-instrument-gallery, .medi-why-choose-card, .medi-why-choose-photo, .medi-team-card, .medi-testimonial-card, .medi-step-card) {
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  :is(.medi-about-card, .medi-about-brand, .medi-service-card, .medi-doctor-talk-player, .medi-instrument-gallery, .medi-why-choose-card, .medi-why-choose-photo, .medi-team-card, .medi-testimonial-card, .medi-step-card):hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 30px rgb(7 59 163 / 18%);
+  }
+}
+:is(.medi-about-card, .medi-service-card, .medi-doctor-talk-player, .medi-instrument-gallery):focus-within {
+  box-shadow: 0 12px 28px rgb(7 59 163 / 18%);
+}
+@media (prefers-reduced-motion: reduce) {
+  :is(.medi-about-card, .medi-about-brand, .medi-service-card, .medi-doctor-talk-player, .medi-instrument-gallery, .medi-why-choose-card, .medi-why-choose-photo, .medi-team-card, .medi-testimonial-card, .medi-step-card) {
+    transition: none;
+  }
+  :is(.medi-about-card, .medi-about-brand, .medi-service-card, .medi-doctor-talk-player, .medi-instrument-gallery, .medi-why-choose-card, .medi-why-choose-photo, .medi-team-card, .medi-testimonial-card, .medi-step-card):hover {
+    transform: none;
+  }
+}
+
+/* Shared button states override component gradients for a clear color change. */
+body :is(.btn, button:not(:disabled)) {
+  transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  body :is(.btn, button):not(:disabled):not([aria-disabled="true"]):hover {
+    background: #073ba3 !important;
+    color: #fff !important;
+    border-color: #073ba3;
+    filter: none;
+  }
+  body .medi-menu-toggle:hover .medi-menu-icon span { background: #fff; }
+}
+body :is(.btn, button):not(:disabled):focus-visible {
+  background: #073ba3 !important;
+  color: #fff !important;
+  outline: 2px solid #298bff;
+  outline-offset: 4px;
+}
+body .medi-menu-toggle:focus-visible .medi-menu-icon span { background: #fff; }
+@media (prefers-reduced-motion: reduce) {
+  body :is(.btn, button:not(:disabled)) { transition: none; }
+}

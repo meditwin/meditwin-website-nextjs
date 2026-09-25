@@ -1,0 +1,62 @@
+.medi-instrument {
+  padding: 66px 0;
+  background: linear-gradient(180deg, #fae5f6 0%, #ebdff5 48%, #c9edfc 100%);
+  color: #171717;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+.medi-instrument .medi-instrument-container { padding-inline: 12px; }
+.medi-instrument-grid { display: grid; grid-template-columns: minmax(0, 1.46fr) minmax(0, 1fr); align-items: center; gap: 34px; }
+.medi-instrument-gallery { position: relative; min-width: 0; aspect-ratio: 598 / 393; border-radius: 22px; background: #fff; }
+.medi-instrument-image { position: absolute; inset: 44px 70px; }
+.medi-instrument-image img { object-fit: contain; }
+.medi-instrument-arrow {
+  position: absolute;
+  top: 50%;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #171717;
+  transform: translateY(-50%);
+}
+.medi-instrument-arrow::before { content: ""; position: absolute; inset: 5px; border: 1.5px solid currentColor; border-radius: 50%; }
+.medi-instrument-previous { left: 16px; }
+.medi-instrument-next { right: 16px; }
+.medi-instrument-arrow:disabled { cursor: default; }
+.medi-instrument-arrow:not(:disabled):hover { color: #073ba3; background: #edf3ff; }
+.medi-instrument-arrow:focus-visible { outline: 2px solid #073ba3; outline-offset: 3px; }
+.medi-instrument-copy h2 { margin: 0 0 16px; font-size: 36px; font-weight: 400; line-height: 1.2; letter-spacing: -0.8px; }
+.medi-instrument-copy p { margin: 0 0 14px; font-size: 13px; line-height: 1.5; }
+.medi-instrument-copy h3 { margin: 0 0 9px; font-size: 16px; font-weight: 400; line-height: 1.4; }
+.medi-instrument-copy ul { display: grid; gap: 5px; padding: 0; margin: 0; list-style: none; }
+.medi-instrument-copy li { display: flex; align-items: flex-start; gap: 4px; font-size: 13px; line-height: 1.4; }
+.medi-instrument-copy li svg { flex-shrink: 0; margin-top: 2px; }
+@media (max-width: 1099.98px) {
+  .medi-instrument .medi-instrument-container { padding-inline: 24px; }
+  .medi-instrument-grid { gap: 28px; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); }
+  .medi-instrument-copy h2 { font-size: 30px; }
+  .medi-instrument-gallery { min-height: 330px; }
+  .medi-instrument-image { inset: 34px 54px; }
+  .medi-instrument-previous { left: 8px; }
+  .medi-instrument-next { right: 8px; }
+}
+@media (max-width: 767.98px) {
+  .medi-instrument { padding: 48px 0; }
+  .medi-instrument-grid { grid-template-columns: minmax(0, 1fr); gap: 30px; }
+  .medi-instrument-gallery { min-height: 0; }
+  .medi-instrument-copy p, .medi-instrument-copy li { font-size: 14px; }
+  .medi-instrument-copy ul { gap: 8px; }
+}
+@media (max-width: 575.98px) {
+  .medi-instrument .medi-instrument-container { padding-inline: 20px; }
+  .medi-instrument-gallery { aspect-ratio: 1.35; border-radius: 18px; }
+  .medi-instrument-image { inset: 24px 48px; }
+  .medi-instrument-previous { left: 2px; }
+  .medi-instrument-next { right: 2px; }
+  .medi-instrument-copy h2 { font-size: 28px; }
+}

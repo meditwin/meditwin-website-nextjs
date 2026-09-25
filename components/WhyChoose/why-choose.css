@@ -1,0 +1,56 @@
+.medi-why-choose {
+  padding: 72px 0 78px;
+  background: #fff;
+  color: #171717;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+.medi-why-choose .medi-why-choose-container { padding-inline: 12px; }
+.medi-why-choose h2 { margin: 0 0 16px; font-size: 36px; line-height: 1.2; font-weight: 400; letter-spacing: -0.6px; text-align: center; }
+.medi-why-choose-intro { margin: 0 auto 30px; font-size: 13px; line-height: 1.5; text-align: center; }
+.medi-why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-areas: "expert photo results" "schedule photo care";
+  gap: 20px;
+}
+.medi-why-choose-expert { grid-area: expert; }
+.medi-why-choose-schedule { grid-area: schedule; }
+.medi-why-choose-results { grid-area: results; }
+.medi-why-choose-care { grid-area: care; }
+.medi-why-choose-card {
+  min-width: 0;
+  min-height: 176px;
+  padding: 25px 26px 22px;
+  border: 1px solid transparent;
+  border-radius: 18px;
+  background: linear-gradient(#fff, #fff) padding-box,
+    linear-gradient(120deg, #299cff, #bf60ff 65%, #f000ef) border-box;
+}
+.medi-why-choose-card > svg { display: block; margin-bottom: 22px; }
+.medi-why-choose-card h3 { margin: 0 0 10px; font-size: 22px; line-height: 1.2; font-weight: 400; letter-spacing: -0.7px; }
+.medi-why-choose-card p { margin: 0; font-size: 12px; line-height: 1.4; }
+.medi-why-choose-photo { grid-area: photo; position: relative; min-height: 372px; overflow: hidden; border-radius: 18px; background: #eef0f2; }
+.medi-why-choose-photo img { object-fit: cover; object-position: center; }
+@media (max-width: 1099.98px) {
+  .medi-why-choose .medi-why-choose-container { padding-inline: 24px; }
+  .medi-why-choose-card { padding: 22px; }
+  .medi-why-choose-card h3 { font-size: 20px; }
+}
+@media (max-width: 991.98px) {
+  .medi-why-choose-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-areas: "photo photo" "expert results" "schedule care"; }
+  .medi-why-choose-photo { min-height: 0; height: 360px; }
+  .medi-why-choose-photo img { object-position: center 40%; }
+  .medi-why-choose h2 { font-size: 32px; }
+  .medi-why-choose-intro { font-size: 14px; }
+}
+@media (max-width: 575.98px) {
+  .medi-why-choose { padding: 48px 0; }
+  .medi-why-choose .medi-why-choose-container { padding-inline: 20px; }
+  .medi-why-choose h2 { font-size: 28px; }
+  .medi-why-choose-intro { line-height: 1.65; margin-bottom: 26px; }
+  .medi-why-choose-grid { grid-template-columns: minmax(0, 1fr); grid-template-areas: "photo" "expert" "schedule" "results" "care"; gap: 16px; }
+  .medi-why-choose-photo { height: auto; aspect-ratio: 0.9; }
+  .medi-why-choose-card { min-height: 0; padding: 24px; }
+  .medi-why-choose-card h3 { font-size: 22px; }
+  .medi-why-choose-card p { font-size: 13px; }
+}

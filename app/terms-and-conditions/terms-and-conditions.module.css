@@ -1,0 +1,151 @@
+.page {
+  flex: 1;
+  background: #fff;
+  color: #171717;
+  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+}
+
+.container {
+  padding-inline: 12px;
+}
+
+.hero {
+  padding: 70px 0 42px;
+  background: #fff;
+  color: #171717;
+  text-align: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(32px, 4vw, 46px);
+  font-weight: 600;
+  letter-spacing: -0.8px;
+  line-height: 1.15;
+}
+
+.content {
+  width: min(100%, 940px);
+  margin: 0 auto 80px;
+  padding: 18px 0 0;
+}
+
+.introduction {
+  margin-bottom: 48px;
+}
+
+.content p,
+.content li,
+.contact address {
+  color: #4b5565;
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.content p {
+  margin: 0 0 14px;
+}
+
+.section {
+  margin-top: 38px;
+  scroll-margin-top: 24px;
+}
+
+.section h2 {
+  margin: 0 0 16px;
+  color: #171717;
+  font-size: clamp(20px, 2.4vw, 25px);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.section ul {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 18px;
+  padding-left: 24px;
+}
+
+.section li {
+  padding-left: 4px;
+}
+
+.section li::marker {
+  color: #171717;
+}
+
+.contact {
+  padding: 0;
+}
+
+.contact address {
+  display: grid;
+  gap: 7px;
+  margin: 18px 0;
+  font-style: normal;
+}
+
+.contact strong {
+  color: #171717;
+  font-weight: 600;
+}
+
+.contact a {
+  color: #171717;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.contact a:hover {
+  color: #4b5565;
+}
+
+.contact a:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid #171717;
+  outline-offset: 3px;
+}
+
+.acceptance {
+  margin: 38px 0 0 !important;
+  padding-top: 30px;
+  border-top: 1px solid #e4eaf4;
+  color: #171717 !important;
+  font-weight: 500;
+}
+
+@media (max-width: 1099.98px) {
+  .container {
+    padding-inline: 24px;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    padding-inline: 20px;
+  }
+
+  .hero {
+    padding: 48px 0 30px;
+  }
+
+  .hero h1 {
+    letter-spacing: -0.7px;
+  }
+
+  .content {
+    margin-bottom: 52px;
+  }
+
+  .content p,
+  .content li,
+  .contact address {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .section {
+    margin-top: 32px;
+  }
+
+}

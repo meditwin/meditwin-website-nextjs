@@ -1,0 +1,41 @@
+.medi-health-faq { color: #171717; font-family: var(--font-inter), Arial, Helvetica, sans-serif; }
+.medi-health-faq .medi-health-container { padding-inline: 12px; }
+.medi-health-cta { padding: 60px 0; text-align: center; background: linear-gradient(180deg, #fae5f6, #ebdff5 48%, #c9edfc); }
+.medi-health-faq h2 { margin: 0 0 16px; font-size: 36px; font-weight: 400; line-height: 1.2; letter-spacing: -0.6px; }
+.medi-health-cta p { margin: 0 auto 26px; font-size: 14px; line-height: 1.6; }
+.medi-health-faq .medi-health-book { display: inline-flex; align-items: center; justify-content: center; min-height: 45px; padding: 10px 20px; border: 0; border-radius: 50px; background: linear-gradient(180deg, #ed00e9, #a538fa 52%, #298bff); color: #fff; font-size: 13px; }
+.medi-faq { padding: 64px 0 72px; background: #fff; }
+.medi-faq h2 { text-align: center; margin-bottom: 30px; }
+.medi-faq-list { display: grid; gap: 14px; margin-inline: auto; }
+.medi-faq-item { border: 1px solid #dce5f3; border-radius: 16px; background: #f7fbff; transition: box-shadow 180ms ease, border-color 180ms ease; }
+.medi-faq-item summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; min-height: 64px; padding: 18px 24px; border-radius: 16px; list-style: none; cursor: pointer; font-size: 17px; font-weight: 500; }
+.medi-faq-item summary::-webkit-details-marker { display: none; }
+.medi-faq-item summary:focus-visible { outline: 2px solid #073ba3; outline-offset: 3px; }
+.medi-faq-item[open] { border-color: #a5c6f4; }
+.medi-faq-item[open] summary { color: #073ba3; }
+.medi-faq-item p { padding: 0 24px 22px; margin: 0; font-size: 14px; line-height: 1.6; }
+.medi-faq-toggle { position: relative; width: 18px; height: 18px; flex-shrink: 0; color: #073ba3; }
+.medi-faq-toggle::before, .medi-faq-toggle::after { content: ""; position: absolute; background: currentColor; border-radius: 2px; }
+.medi-faq-toggle::before { width: 16px; height: 2px; top: 8px; left: 1px; }
+.medi-faq-toggle::after { width: 2px; height: 16px; top: 1px; left: 8px; }
+.medi-faq-item[open] .medi-faq-toggle::after { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .medi-faq-item:hover { border-color: #83b7f1; box-shadow: 0 8px 22px rgb(7 59 163 / 10%); }
+  .medi-faq-item summary:hover { color: #073ba3; background: #e1f0ff; }
+}
+@media (max-width: 1099.98px) {
+  .medi-health-faq .medi-health-container { padding-inline: 24px; }
+}
+@media (max-width: 767.98px) {
+  .medi-health-faq h2 { font-size: 30px; }
+}
+@media (max-width: 575.98px) {
+  .medi-health-faq .medi-health-container { padding-inline: 20px; }
+  .medi-health-cta, .medi-faq { padding: 44px 0; }
+  .medi-health-faq h2 { font-size: 28px; }
+  .medi-faq-item summary { padding: 18px; font-size: 16px; }
+  .medi-faq-item p { padding: 0 18px 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .medi-faq-item { transition: none; }
+}
