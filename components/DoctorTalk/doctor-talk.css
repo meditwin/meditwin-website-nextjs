@@ -26,12 +26,68 @@
 }
 
 .medi-doctor-talk-grid {
+  --doctor-talk-gap: 34px;
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 34px;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - var(--doctor-talk-gap)) / 2);
+  gap: var(--doctor-talk-gap);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  overscroll-behavior-x: contain;
+  padding-bottom: 12px;
 }
 
-.medi-doctor-talk-item { min-width: 0; }
+.medi-doctor-talk-item { min-width: 0; scroll-snap-align: start; }
+
+.medi-doctor-talk-slider-wrap {
+  position: relative;
+}
+
+.medi-doctor-talk-controls {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.medi-doctor-talk-controls button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #073ba3;
+  border-radius: 50%;
+  background: #fff;
+  color: #073ba3;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+  transition: opacity 150ms ease, background-color 150ms ease, color 150ms ease;
+}
+
+.medi-doctor-talk-slider-wrap:hover .medi-doctor-talk-controls button,
+.medi-doctor-talk-slider-wrap:focus-within .medi-doctor-talk-controls button {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.medi-doctor-talk-controls button:hover {
+  background: #073ba3;
+  color: #fff;
+}
+
+.medi-doctor-talk-controls button:focus-visible {
+  outline: 2px solid #073ba3;
+  outline-offset: 3px;
+}
 
 .medi-doctor-talk-player {
   overflow: hidden;
@@ -40,7 +96,8 @@
   color-scheme: normal;
 }
 
-.medi-doctor-talk-player iframe {
+.medi-doctor-talk-player iframe,
+.medi-doctor-talk-player video {
   display: block;
   border: 0;
 }
@@ -66,15 +123,40 @@
   border-radius: 3px;
 }
 
+@media (min-width: 768px) {
+  .medi-doctor-talk-slider-wrap {
+    padding-inline: 56px;
+  }
+
+  .medi-doctor-talk-grid {
+    scrollbar-width: none;
+    padding-bottom: 0;
+  }
+
+  .medi-doctor-talk-grid::-webkit-scrollbar { display: none; }
+}
+
+@media (hover: none) {
+  .medi-doctor-talk-controls button { opacity: 1; pointer-events: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .medi-doctor-talk-controls button { transition: none; }
+}
+
 @media (max-width: 1099.98px) {
   .medi-doctor-talk .medi-doctor-talk-container { padding-inline: 24px; }
-  .medi-doctor-talk-grid { gap: 24px; }
+  .medi-doctor-talk-grid { --doctor-talk-gap: 24px; }
 }
 
 @media (max-width: 767.98px) {
+  .medi-doctor-talk-controls { display: none; }
   .medi-doctor-talk { padding: 48px 0 36px; }
   .medi-doctor-talk h2 { font-size: 30px; }
-  .medi-doctor-talk-grid { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .medi-doctor-talk-grid {
+    grid-auto-columns: 90%;
+    --doctor-talk-gap: 20px;
+  }
 }
 
 @media (max-width: 575.98px) {

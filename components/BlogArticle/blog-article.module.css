@@ -1,0 +1,56 @@
+.article {
+  width: 80%;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 56px 0 8px;
+  color: #171717;
+}
+
+.article h2 {
+  margin: 0 0 14px;
+  font-size: clamp(24px, 2.65vw, 36px);
+  font-weight: 400;
+  line-height: 1.25;
+}
+
+.article p {
+  margin: 0 0 16px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.header { text-align: center; }
+.hero, .imageFrame {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+  background: #fff;
+}
+.hero { aspect-ratio: 2 / 1; margin: 24px 0 32px; }
+.hero img, .imageFrame img { object-fit: cover; object-position: top center; }
+.quote {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+  margin: 0 0 32px;
+  padding: 24px;
+  border: 1px solid #e5e5e5;
+  border-radius: 14px;
+}
+.quoteMark { font-family: Georgia, serif; font-size: 72px; line-height: 0.9; }
+.quote p { margin: 0; align-self: center; font-size: 16px; line-height: 1.5; }
+.images { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin: 22px 0; }
+.imageFrame { aspect-ratio: 1; }
+@media (max-width: 767.98px) {
+  .article { width: calc(100% - 40px); padding-top: 36px; }
+  .article p { font-size: 14px; }
+  .quote { padding: 20px 16px; gap: 12px; }
+  .quoteMark { font-size: 52px; }
+  .quote p { font-size: 15px; }
+  .images { gap: 14px; }
+}
+@media (max-width: 575.98px) {
+  .images { grid-template-columns: 1fr; }
+  .hero { aspect-ratio: 1.5; }
+}

@@ -7,12 +7,47 @@
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
 }
 
-.medi-navbar { min-height: 82px; padding: 18px 0; }
-.medi-navbar .medi-navbar-container { width: 100%; padding-inline: 12px; }
-.medi-navbar .medi-brand { margin: 0; padding: 0; flex-shrink: 0; line-height: 1; }
-.medi-logo { display: block; width: 150px; height: auto; }
-.medi-navbar .medi-navigation { justify-content: space-between; margin-left: 105px; gap: 24px; }
-.medi-nav-links { align-items: center; gap: 27px; }
+.medi-navbar {
+  min-height: 82px;
+  padding: 18px 0;
+}
+
+.medi-navbar .medi-navbar-container {
+  width: 100%;
+  padding-inline: 12px;
+}
+
+.medi-navbar .medi-brand {
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.medi-logo {
+  display: block;
+  width: 150px;
+  height: auto;
+}
+
+.medi-navbar .medi-navigation {
+  justify-content: space-between;
+  margin-left: 105px;
+  gap: 24px;
+}
+
+.medi-nav-links {
+  align-items: center;
+  gap: 27px;
+}
+
+.medi-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
 .medi-navbar .medi-nav-link {
   display: flex;
   align-items: center;
@@ -27,14 +62,55 @@
   white-space: nowrap;
   transition: color 160ms ease;
 }
+
 .medi-navbar .medi-nav-link.active,
-.medi-navbar .medi-nav-link:hover { color: #003ecc; }
-.medi-chevron { width: 6px; height: 6px; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: translateY(-2px) rotate(45deg); }
-.medi-chevron.is-open { transform: translateY(1px) rotate(225deg); }
-.medi-services { position: relative; }
-.medi-services-menu { position: absolute; top: 100%; left: -16px; min-width: 180px; margin: 0; padding: 8px; list-style: none; border: 1px solid #eee; border-radius: 10px; background: #fff; box-shadow: 0 8px 24px #15275414; }
-.medi-services-menu a { display: block; padding: 10px; border-radius: 6px; color: #171717; font-size: 13px; }
-.medi-services-menu a:hover { background: #f5f4ff; color: #003ecc; }
+.medi-navbar .medi-nav-link:hover {
+  color: #003ecc;
+}
+
+.medi-chevron {
+  width: 6px;
+  height: 6px;
+  border-right: 1px solid currentColor;
+  border-bottom: 1px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+}
+
+.medi-chevron.is-open {
+  transform: translateY(1px) rotate(225deg);
+}
+
+.medi-services {
+  position: relative;
+}
+
+.medi-services-menu {
+  position: absolute;
+  top: 100%;
+  left: -16px;
+  min-width: 180px;
+  margin: 0;
+  padding: 8px;
+  list-style: none;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 8px 24px #15275414;
+}
+
+.medi-services-menu a {
+  display: block;
+  padding: 10px;
+  border-radius: 6px;
+  color: #171717;
+  font-size: 13px;
+}
+
+.medi-services-menu a:hover {
+  background: #f5f4ff;
+  color: #003ecc;
+}
+
 .medi-navbar .medi-appointment {
   display: inline-flex;
   align-items: center;
@@ -51,34 +127,137 @@
   white-space: nowrap;
   transition: box-shadow 160ms ease;
 }
-.medi-navbar .medi-appointment:hover { color: #fff; box-shadow: 0 4px 16px #a538fa40; }
+
+.medi-navbar .medi-appointment:hover {
+  color: #fff;
+  box-shadow: 0 4px 16px #a538fa40;
+}
+
 .medi-header a:focus-visible,
-.medi-header button:focus-visible { outline: 2px solid #003ecc; outline-offset: 4px; box-shadow: none; }
-.medi-navbar .medi-menu-toggle { width: 44px; height: 44px; padding: 10px; border: 1px solid #e8e8ef; border-radius: 8px; }
-.medi-menu-icon { display: flex; flex-direction: column; gap: 5px; }
-.medi-menu-icon span { display: block; height: 2px; width: 22px; background: #173876; transition: transform 160ms ease; }
-.medi-menu-icon.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.medi-menu-icon.is-open span:nth-child(2) { opacity: 0; }
-.medi-menu-icon.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.medi-header button:focus-visible {
+  outline: 2px solid #003ecc;
+  outline-offset: 4px;
+  box-shadow: none;
+}
+
+.medi-navbar .medi-menu-toggle {
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  border: 1px solid #e8e8ef;
+  border-radius: 8px;
+}
+
+.medi-menu-icon {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.medi-menu-icon span {
+  display: block;
+  height: 2px;
+  width: 22px;
+  background: #173876;
+  transition: transform 160ms ease;
+}
+
+.medi-menu-icon.is-open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.medi-menu-icon.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.medi-menu-icon.is-open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  .medi-navbar .medi-navigation {
+    margin-left: 16px;
+  }
+
+  .medi-nav-links {
+    gap: 16px;
+  }
+}
 
 @media (min-width: 992px) and (max-width: 1099.98px) {
-  .medi-navbar .medi-navigation { margin-left: 48px; }
-  .medi-nav-links { gap: 22px; }
-  .medi-navbar .medi-navbar-container { padding-inline: 24px; }
+  .medi-navbar .medi-navigation {
+    margin-left: 16px;
+  }
+
+  .medi-nav-links {
+    gap: 16px;
+  }
+
+  .medi-navbar .medi-navbar-container {
+    padding-inline: 24px;
+  }
 }
+
 @media (max-width: 991.98px) {
-  .medi-navbar { min-height: 76px; padding: 16px 0; }
-  .medi-navbar .medi-navbar-container { padding-inline: 24px; }
-  .medi-navbar .medi-navigation { margin-left: 0; flex-basis: 100%; padding-top: 16px; }
-  .medi-nav-links { align-items: stretch; gap: 0; margin: 0 0 16px; }
-  .medi-navbar .medi-nav-link { width: 100%; padding: 10px 4px; font-size: 14px; text-align: left; }
-  .medi-services-menu { position: static; margin: 2px 0 8px; box-shadow: none; }
-  .medi-navbar .medi-appointment { margin-bottom: 4px; }
+  .medi-navbar {
+    min-height: 76px;
+    padding: 16px 0;
+  }
+
+  .medi-navbar .medi-navbar-container {
+    padding-inline: 24px;
+  }
+
+  .medi-navbar .medi-navigation {
+    margin-left: 0;
+    flex-basis: 100%;
+    padding-top: 16px;
+  }
+
+  .medi-nav-links {
+    align-items: stretch;
+    gap: 0;
+    margin: 0 0 16px;
+  }
+
+  .medi-navbar .medi-nav-link {
+    width: 100%;
+    padding: 10px 4px;
+    font-size: 14px;
+    text-align: left;
+  }
+
+  .medi-services-menu {
+    position: static;
+    margin: 2px 0 8px;
+    box-shadow: none;
+  }
+
+  .medi-navbar .medi-appointment {
+    margin-bottom: 4px;
+  }
+
 }
+
 @media (max-width: 575.98px) {
-  .medi-navbar .medi-navbar-container { padding-inline: 20px; }
-  .medi-navbar .medi-appointment { width: 100%; }
+  .medi-navbar .medi-navbar-container {
+    padding-inline: 20px;
+  }
+
+  .medi-navbar .medi-appointment {
+    width: 100%;
+  }
+
+  .medi-nav-actions {
+    flex-wrap: wrap;
+  }
 }
+
 @media (prefers-reduced-motion: reduce) {
-  .medi-header *, .medi-header *::before, .medi-header *::after { transition: none !important; }
+
+  .medi-header *,
+  .medi-header *::before,
+  .medi-header *::after {
+    transition: none !important;
+  }
 }

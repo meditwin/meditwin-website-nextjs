@@ -5,44 +5,38 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import logo from "../../public/images/logo/medi-logo.png";
+import PlayStoreButton from "../PlayStoreButton/page";
 import "./navbar.css";
 
 const links = [
   { label: "Home", href: "/" },
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Team", href: "#team" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contact Us", href: "#contact" },
+  { label: "About", href: "/about-us" },
+  { label: "Services", href: "/services" },
+  { label: "Team", href: "/team" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact Us", href: "/contact" },
 ];
 
-export default function Navbar({ services = [{ label: "All Services", href: "#service" }] }) {
+export default function Navbar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
   const headerRef = useRef(null);
   const toggleRef = useRef(null);
-  const servicesRef = useRef(null);
 
   const closeMenus = () => {
     setMenuOpen(false);
-    setServicesOpen(false);
   };
 
   useEffect(() => {
     function handlePointer(event) {
       if (!headerRef.current?.contains(event.target)) {
         setMenuOpen(false);
-        setServicesOpen(false);
       }
     }
     function handleEscape(event) {
       if (event.key !== "Escape") return;
-      if (servicesOpen) {
-        setServicesOpen(false);
-        servicesRef.current?.focus();
-      } else if (menuOpen) {
+      if (menuOpen) {
         setMenuOpen(false);
         toggleRef.current?.focus();
       }
@@ -53,7 +47,7 @@ export default function Navbar({ services = [{ label: "All Services", href: "#se
       document.removeEventListener("pointerdown", handlePointer);
       document.removeEventListener("keydown", handleEscape);
     };
-  }, [menuOpen, servicesOpen]);
+  }, [menuOpen]);
 
   const isActive = (href) => pathname === href || (href !== "/" && pathname.startsWith(`${href}/`));
 
@@ -70,30 +64,23 @@ export default function Navbar({ services = [{ label: "All Services", href: "#se
           <button ref={toggleRef} className="navbar-toggler medi-menu-toggle" type="button"
             aria-controls="medi-navigation" aria-expanded={menuOpen}
             aria-label={menuOpen ? "Close navigation" : "Open navigation"}
-            onClick={() => { setMenuOpen(!menuOpen); setServicesOpen(false); }}>
+            onClick={() => setMenuOpen(!menuOpen)}>
             <span className={`medi-menu-icon${menuOpen ? " is-open" : ""}`} aria-hidden="true"><span /><span /><span /></span>
           </button>
 
           <div id="medi-navigation" className={`collapse navbar-collapse medi-navigation${menuOpen ? " show" : ""}`}>
             <ul className="navbar-nav medi-nav-links">
               {links.map(({ label, href }) => (
-                <li className={`nav-item${label === "Services" ? " medi-services" : ""}`} key={href}>
-                  {label === "Services" ? <>
-                    <button ref={servicesRef} type="button" className={`nav-link medi-nav-link${isActive(href) ? " active" : ""}`}
-                      aria-expanded={servicesOpen} aria-controls="medi-services-menu" onClick={() => setServicesOpen(!servicesOpen)}>
-                      Services <span className={`medi-chevron${servicesOpen ? " is-open" : ""}`} aria-hidden="true" />
-                    </button>
-                    <ul id="medi-services-menu" className="medi-services-menu" hidden={!servicesOpen}>
-                      {services.map((service) => <li key={service.href}>
-                        <Link href={service.href} onClick={closeMenus}>{service.label}</Link>
-                      </li>)}
-                    </ul>
-                  </> : <Link href={href} className={`nav-link medi-nav-link${isActive(href) ? " active" : ""}`}
-                    aria-current={isActive(href) ? "page" : undefined} onClick={closeMenus}>{label}</Link>}
+                <li className="nav-item" key={href}>
+                  <Link href={href} className={`nav-link medi-nav-link${isActive(href) ? " active" : ""}`}
+                    aria-current={isActive(href) ? "page" : undefined} onClick={closeMenus}>{label}</Link>
                 </li>
               ))}
             </ul>
-            <Link href="#" className="btn medi-appointment" onClick={closeMenus}>Book Appointment</Link>
+            <div className="medi-nav-actions">
+              <PlayStoreButton onClick={closeMenus} />
+              <Link href="#" className="btn medi-appointment" onClick={closeMenus}>Book Appointment</Link>
+            </div>
           </div>
         </div>
       </nav>
