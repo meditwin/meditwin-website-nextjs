@@ -7,13 +7,21 @@
 .medi-team .medi-team-container { padding-inline: 12px; }
 .medi-team h2 { margin: 0 0 14px; text-align: center; font-size: 36px; line-height: 1.2; font-weight: 400; letter-spacing: -0.6px; }
 .medi-team-intro { margin: 0 auto 30px; text-align: center; font-size: 13px; line-height: 1.5; }
-.medi-team-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.medi-team-slider { position: relative; padding-inline: 56px; }
+.medi-team-grid { display: grid; grid-auto-flow: column; grid-auto-columns: calc((100% - 60px) / 4); gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-block: 8px; margin-block: -8px; }
+.medi-team-grid::-webkit-scrollbar { display: none; }
+.medi-team-grid:focus-visible { outline: 2px solid #073ba3; outline-offset: 4px; }
+.medi-team .medi-team-arrow { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2; display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 1px solid #d9d5e8; border-radius: 50%; background: #fff; color: #073ba3; box-shadow: 0 2px 8px rgb(0 0 0 / 15%); cursor: pointer; }
+.medi-team-arrow-left { left: 0; }
+.medi-team-arrow-right { right: 0; }
+.medi-team-arrow svg { width: 22px; height: 22px; }
 .medi-team-card {
   position: relative;
   isolation: isolate;
   display: flex;
   align-items: flex-end;
   min-width: 0;
+  scroll-snap-align: start;
   aspect-ratio: 245 / 327;
   overflow: hidden;
   border-radius: 22px;
@@ -31,27 +39,12 @@
 .medi-team-card-copy { width: 100%; padding: 18px 20px; }
 .medi-team-card h3 { margin: 0 0 4px; font-size: 15px; font-weight: 600; line-height: 1.3; letter-spacing: -0.35px; }
 .medi-team-card p { margin: 0; font-size: 11px; line-height: 1.5; color: #f5f5f5; }
-.medi-team-footer { margin-top: 28px; }
-.medi-team .medi-team-all {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 45px;
-  padding: 10px 20px;
-  border: 0;
-  border-radius: 50px;
-  background: linear-gradient(180deg, #ed00e9 0%, #a538fa 52%, #298bff 100%);
-  color: #fff;
-  font-size: 13px;
-}
-.medi-team .medi-team-all:hover { color: #fff; filter: brightness(1.08); }
-.medi-team-all:focus-visible { outline: 2px solid #073ba3; outline-offset: 4px; }
 @media (max-width: 1099.98px) {
   .medi-team .medi-team-container { padding-inline: 24px; }
   .medi-team-card-copy { padding: 18px 14px; }
 }
 @media (max-width: 991.98px) {
-  .medi-team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .medi-team-grid { grid-auto-columns: calc((100% - 20px) / 2); }
   .medi-team h2 { font-size: 32px; }
   .medi-team-card-copy { padding: 20px; }
   .medi-team-card h3 { font-size: 18px; }
@@ -62,6 +55,6 @@
   .medi-team .medi-team-container { padding-inline: 20px; }
   .medi-team h2 { font-size: 28px; }
   .medi-team-intro { font-size: 14px; line-height: 1.6; margin-bottom: 26px; }
-  .medi-team-grid { grid-template-columns: minmax(0, 1fr); margin-inline: auto; }
+  .medi-team-grid { grid-auto-columns: 100%; margin-inline: auto; }
   .medi-team-card { border-radius: 20px; }
 }

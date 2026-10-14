@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import logo from "../../public/images/logo/medi-logo.png";
 import PlayStoreButton from "../PlayStoreButton/page";
+import UserMenu from "./UserMenu";
 import "./navbar.css";
 
 const links = [
@@ -78,8 +79,10 @@ export default function Navbar() {
               ))}
             </ul>
             <div className="medi-nav-actions">
+              {pathname === "/booking" ? <UserMenu onNavigate={closeMenus} /> : <>
               <PlayStoreButton onClick={closeMenus} />
               <Link href="#" className="btn medi-appointment" onClick={closeMenus}>Book Appointment</Link>
+              </>}
             </div>
           </div>
         </div>

@@ -1,0 +1,39 @@
+.banner {
+    position: relative;
+    isolation: isolate;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    min-height: clamp(232px, 26vw, 400px);
+    padding: 210px 20px;
+    overflow: hidden;
+    background: #263238;
+}
+
+.image {
+    z-index: -2;
+    object-fit: cover;
+    object-position: center 58%;
+}
+
+.overlay {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: rgb(0 0 0 / 58%);
+}
+
+.title {
+    margin: 0;
+    color: #fff;
+    font-size: clamp(30px, 4.5vw, 56px);
+    font-weight: 400;
+    line-height: 1.2;
+    text-align: center;
+}
+
+@media (max-width: 575.98px) {
+    .banner {
+        min-height: 200px;
+    }
+}

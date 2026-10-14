@@ -1,0 +1,13 @@
+--- a/Services/userService.py
++++ b/Services/userService.py
+@@ -98,9 +98,9 @@
+ def build_login_registration_user(email=None, mobile=None, firebase_token=None):
+     return UserModel(
+         email=email,
+         mobile=mobile,
+         firebase_token=firebase_token,
+         verification_status=0,
+-        user_role=3,
++        user_role=4,
+         status=1,
+     ).model_dump()

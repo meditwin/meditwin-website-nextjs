@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import aboutImage from "../../public/images/about/about-care.png";
+import aboutImage from "../../public/images/about/about-care.webp";
 import "./about.css";
 
 const statistics = [
@@ -33,7 +33,7 @@ export default function About() {
       <div className=  "container-xxl  medi-about-container">
         <div className="medi-about-card">
           <div className="medi-about-copy">
-            <h2 id="medi-about-title">About Care - N - Care</h2>
+            <h2 id="medi-about-title">About Care - N - Cure</h2>
             <p>
               Going to the doctor usually means waiting an hour to speak to someone for five minutes. We run things differently at Care-n-Cure. You sit down with the doctors, explain what hurts and we figure out how to fix it without rushing you out the door. 
               <br />

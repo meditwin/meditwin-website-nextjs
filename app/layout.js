@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
 import Navbar from "../components/Navbar/page";
 import Footer from "../components/Footer/page";
+import { AuthProvider } from "../context/AuthContext";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,9 +23,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={inter.variable}>
       <body>
+        <AuthProvider>
         <Navbar />
         {children}
         <Footer />
+        </AuthProvider>
       </body>
     </html>
   );

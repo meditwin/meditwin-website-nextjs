@@ -1,0 +1,276 @@
+.section {
+  background: #fff;
+  color: #171717;
+}
+
+.container {
+  width: min(1080px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.stepBar {
+  padding: 54px 24px 34px;
+}
+
+.steps {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.step {
+  padding: 12px 21px;
+  border-radius: 30px;
+  background: #454545;
+  color: white;
+  font-size: 14px;
+  line-height: 1.3;
+  text-align: center;
+}
+
+.activeStep {
+  background: linear-gradient(180deg, #ed00e9, #a538fa 52%, #003ecc);
+}
+
+.stepButton { display: block; width: 100%; padding: 0; border: 0; border-radius: inherit; background: transparent; color: inherit; font: inherit; cursor: pointer; }
+.section .stepButton.stepButton:not(:disabled):is(:hover, :focus-visible) { background: transparent !important; color: inherit !important; }
+
+.completedStep { background: #008000; }
+
+.selection {
+  background: linear-gradient(180deg, #fae5f7 0%, #e9def8 48%, #c6efff 100%);
+  padding: 58px 0 66px;
+}
+
+.heading {
+  text-align: center;
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 0 28px;
+}
+
+.heading:focus {
+  outline: none;
+}
+
+.clinics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.clinic {
+  min-width: 0;
+  border-radius: 20px;
+  outline: 2px solid transparent;
+  outline-offset: 6px;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.selected {
+  outline-color: #7d31df;
+}
+
+.imageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.58;
+  overflow: hidden;
+  border-radius: 20px;
+  background: #d7e3e9;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .clinic:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgb(21 39 84 / 14%);
+  }
+
+  .clinic:hover .image {
+    transform: scale(1.05);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clinic,
+  .image {
+    transition: none;
+  }
+
+  .clinic:hover,
+  .clinic:hover .image {
+    transform: none;
+  }
+}
+
+.details {
+  padding: 20px 7px 0;
+}
+
+.details h3 {
+  margin: 0 0 10px;
+  font-size: clamp(18px, 1.8vw, 23px);
+  font-weight: 500;
+}
+
+.details p {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 6px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.details p svg {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+}
+
+.details a {
+  color: inherit;
+}
+
+.details a:hover {
+  text-decoration: underline;
+}
+
+.selectButton,
+.nextButton,
+.backButton {
+  border: 0;
+  border-radius: 30px;
+  color: white;
+  font: inherit;
+  cursor: pointer;
+}
+
+.selectButton,
+.nextButton {
+  background: linear-gradient(180deg, #ec00ed, #bc38f8 50%, #298bff);
+}
+
+.selectButton {
+  font-size: 12px;
+  min-height: 36px;
+  padding: 8px 19px;
+  margin-top: 7px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-block: 35px 76px;
+}
+
+.nextButton,
+.backButton {
+  width: min(29%, 290px);
+  min-height: 46px;
+  padding: 12px 24px;
+  font-size: 14px;
+}
+
+.backButton {
+  background: #454545;
+}
+
+.nextButton:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.section :is(button, a):focus-visible {
+  outline: 2px solid #003ecc;
+  outline-offset: 4px;
+}
+
+.notice {
+  padding: 28px 0;
+  text-align: center;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.notice p {
+  margin: 0 0 12px;
+}
+
+.error {
+  margin: 24px 0 0;
+  color: #a51e3a;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 850px) {
+  .clinics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 22px;
+  }
+
+  .step {
+    font-size: 12px;
+    padding: 11px 16px;
+  }
+}
+
+@media (max-width: 575px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+
+  .stepBar {
+    padding: 28px 20px;
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .selection {
+    padding: 34px 0 42px;
+  }
+
+  .clinics {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .details {
+    padding-top: 16px;
+  }
+
+  .details p {
+    font-size: 14px;
+  }
+
+  .selectButton {
+    min-height: 44px;
+    font-size: 13px;
+  }
+
+  .actions {
+    padding-block: 28px 40px;
+  }
+
+  .nextButton,
+  .backButton {
+    width: 45%;
+  }
+}

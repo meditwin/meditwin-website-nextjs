@@ -1,0 +1,70 @@
+.subtitle {
+  margin: 0 0 calc(26 * var(--unit));
+  font-size: calc(12 * var(--unit));
+  line-height: 1.5;
+}
+
+.subtitle span,
+.timer span {
+  color: #5329ae;
+}
+
+.digits {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: calc(10 * var(--unit));
+}
+
+.digits input {
+  width: 100%;
+  height: calc(39 * var(--unit));
+  padding: 0;
+  border: 1px solid rgb(255 255 255 / 85%);
+  border-radius: calc(6 * var(--unit));
+  background: rgb(255 255 255 / 90%);
+  color: #101820;
+  font-size: calc(22 * var(--unit));
+  text-align: center;
+}
+
+.digits input:focus-visible {
+  outline: 2px solid #2267a6;
+  outline-offset: 2px;
+}
+
+.resendPrompt {
+  margin: calc(8 * var(--unit)) 0 calc(26 * var(--unit));
+  font-size: calc(12 * var(--unit));
+  line-height: 1.5;
+}
+
+.resendButton {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #5329ae;
+  font: inherit;
+  cursor: pointer;
+}
+
+.resendButton:disabled {
+  cursor: default;
+}
+
+.timer {
+  margin: calc(16 * var(--unit)) 0 0;
+  font-size: calc(12 * var(--unit));
+  line-height: 1.5;
+}
+
+.message {
+  margin: calc(14 * var(--unit)) 0 0;
+  font-size: calc(12 * var(--unit));
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .digits input {
+    min-height: 44px;
+  }
+}

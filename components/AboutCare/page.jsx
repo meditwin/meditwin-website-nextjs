@@ -15,7 +15,7 @@ export default function AboutCare() {
     <section className={styles.section} aria-labelledby="about-care-title">
       <div className={`container ${styles.container}`}>
         <header className={styles.header}>
-          <h2 id="about-care-title">About Care -N- Care?</h2>
+          <h2 id="about-care-title">About Care -N- Cure?</h2>
           <p>
             Dr. Sayantan Ghosh and Dr. Arunima Haldar built this clinic to bring proper medical care to Action Area I. We treat complex eye diseases and manage women's health under one roof in Newtown.
           </p>

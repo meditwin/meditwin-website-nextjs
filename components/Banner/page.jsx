@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Swal from "sweetalert2";
-import bannerImage from "../../public/images/banner/banner-img.png";
+import bannerImage from "../../public/images/banner/banner3.webp";
 import "./banner.css";
 
 export default function Banner({ storyUrl }) {

@@ -1,0 +1,179 @@
+.page {
+  --unit: clamp(0.6667px, 0.06845vw, 1px);
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  background: #a1dfff url("/images/login/bg.jpg") center / cover no-repeat;
+  color: #101820;
+  color-scheme: light;
+}
+
+.card {
+  width: calc(360 * var(--unit));
+  max-width: 100%;
+  padding: calc(38 * var(--unit)) calc(36 * var(--unit)) calc(34 * var(--unit));
+  border: 1px solid rgb(255 255 255 / 65%);
+  border-radius: calc(24 * var(--unit));
+  background: rgb(255 255 255 / 9%);
+  box-shadow: 0 4px 15px rgb(37 104 133 / 23%), inset 0 0 12px rgb(255 255 255 / 12%);
+  backdrop-filter: blur(5px);
+  text-align: center;
+}
+
+.logo {
+  display: block;
+  width: calc(190 * var(--unit));
+  height: auto;
+  margin: 0 auto calc(29 * var(--unit));
+}
+
+.heading {
+  margin: 0 0 calc(10 * var(--unit));
+  font-size: calc(36 * var(--unit));
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.8px;
+}
+
+.subtitle {
+  margin: 0 0 calc(30 * var(--unit));
+  font-size: calc(14 * var(--unit));
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.form {
+  text-align: left;
+}
+
+.label {
+  display: block;
+  margin: 0 0 calc(3 * var(--unit)) calc(12 * var(--unit));
+  font-size: calc(11 * var(--unit));
+  line-height: 1.5;
+}
+
+.emailField {
+  height: calc(45 * var(--unit));
+  display: flex;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 85%);
+  border-radius: 30px;
+}
+
+.emailField:focus-within {
+  outline: 2px solid #2267a6;
+  outline-offset: 3px;
+}
+
+.emailField input {
+  width: 100%;
+  min-width: 0;
+  padding: 0 calc(13 * var(--unit));
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: #101820;
+  font: inherit;
+  font-size: calc(10 * var(--unit));
+}
+
+.emailField input::placeholder {
+  color: #758b99;
+  opacity: 1;
+}
+
+.continueButton {
+  display: block;
+  width: 100%;
+  height: calc(47 * var(--unit));
+  margin-top: calc(22 * var(--unit));
+  border: 0;
+  border-radius: 30px;
+  background: linear-gradient(180deg, #ec00ed 0%, #c02cf2 42%, #328bff 100%);
+  color: #fff;
+  font-size: calc(14 * var(--unit));
+  cursor: pointer;
+}
+
+.registerBox {
+  margin-top: calc(16 * var(--unit));
+  padding: calc(12 * var(--unit)) calc(8 * var(--unit));
+  border: 1px solid rgb(255 255 255 / 85%);
+  border-radius: calc(12 * var(--unit));
+  background: rgb(255 255 255 / 20%);
+  font-size: calc(12 * var(--unit));
+  line-height: 1.5;
+  text-align: center;
+}
+
+.note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: calc(7 * var(--unit));
+  margin: calc(23 * var(--unit)) 0 0;
+  font-size: calc(10.5 * var(--unit));
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+.registerBox a {
+  color: #0057b8;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.registerBox a:hover,
+.registerBox a:focus-visible {
+  color: #073ba3;
+  background-color: #e1edff;
+  text-decoration-thickness: 2px;
+}
+
+.note svg {
+  flex-shrink: 0;
+  width: calc(9 * var(--unit));
+  height: calc(9 * var(--unit));
+}
+
+@media (max-width: 600px) {
+  .page {
+    --unit: 1px;
+  }
+
+  .card {
+    padding-inline: 24px;
+  }
+
+  .emailField,
+  .continueButton {
+    min-height: 44px;
+  }
+
+  .emailField input {
+    font-size: 16px;
+  }
+}
+
+
+.errorMessage {
+  margin: 10px 0 0;
+  padding: 9px 12px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fff1f2;
+  color: #c62828;
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.continueButton:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}

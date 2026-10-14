@@ -1,0 +1,135 @@
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #d9d5e8;
+    border-radius: 20px;
+    background: transparent;
+    color: #171717;
+    transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.selected {
+    border-color: #7d31df;
+    box-shadow: inset 0 0 0 1px #7d31df;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 28px rgb(21 39 84 / 14%);
+    }
+
+    .card.selected:hover {
+        box-shadow: inset 0 0 0 1px #7d31df, 0 12px 28px rgb(21 39 84 / 14%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .card {
+        transition: none;
+    }
+
+    .card:hover {
+        transform: none;
+    }
+}
+
+.imageWrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.6;
+    overflow: hidden;
+    border-radius: 16px;
+    background: #d7e3e9;
+}
+
+.image {
+    object-fit: cover;
+    object-position: center 25%;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    padding: 20px 6px 0;
+}
+
+.details h3 {
+    margin: 0 0 10px;
+    font-size: 21px;
+    font-weight: 500;
+    line-height: 1.35;
+}
+
+.details p {
+    font-size: 13px;
+    line-height: 1.5;
+    margin: 0 0 7px;
+    overflow-wrap: anywhere;
+}
+
+.selectButton {
+    margin-top: auto;
+    min-height: 36px;
+    padding: 8px 19px;
+    border: 0;
+    border-radius: 30px;
+    background: linear-gradient(180deg, #ec00ed, #bc38f8 50%, #298bff);
+    color: white;
+    font: inherit;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.details p:last-of-type {
+    margin-bottom: 22px;
+}
+
+.selectButton:focus-visible {
+    outline: 2px solid #003ecc;
+    outline-offset: 4px;
+}
+
+.notice {
+    text-align: center;
+    margin: 0;
+    padding: 28px 0;
+}
+
+.error {
+    color: #a51e3a;
+    text-align: center;
+    margin: 0;
+    padding: 24px 0;
+}
+
+@media (max-width: 850px) {
+    .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 575px) {
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .selectButton {
+        min-height: 44px;
+        font-size: 13px;
+    }
+
+    .details p {
+        font-size: 14px;
+    }
+}

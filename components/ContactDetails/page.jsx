@@ -71,20 +71,20 @@ export default function ContactDetails() {
                 </div>
                 <div className={styles.contactItem}>
                   <ContactIcon type="email" />
-                  <div><h4>Email</h4><a href="mailto:info@wellcareclinic.com">info@wellcareclinic.com</a></div>
+                  <div><h4>Email</h4><a href="mailto:carencureresearchlab@gmail.com">carencureresearchlab@gmail.com</a></div>
                 </div>
                 <div className={`${styles.contactItem} ${styles.address}`}>
                   <ContactIcon type="address" />
-                  <div><h4>Address</h4><p>Shop 214, Aahirini Market, 2nd Floor, Action<br className={styles.addressBreak} /> Area I, Newtown, West Bengal 700102</p></div>
+                  <div><h4>Address</h4><p>Shop 214, Aahirini Market, 2nd Floor, Action<br className={styles.addressBreak} /> Area I, Newtown, Kolkata 700156</p></div>
                 </div>
               </address>
             </section>
             <section className={`${styles.card} ${styles.hoursCard}`} aria-labelledby="opening-hours-title">
               <h3 id="opening-hours-title">Opening Hours</h3>
               <dl className={styles.hours}>
-                <div><dt>Monday - Friday</dt><dd>08:00 AM - 07:00 PM</dd></div>
-                <div><dt>Saturday</dt><dd>09:00 AM - 05:00 PM</dd></div>
-                <div><dt>Sunday</dt><dd>Closed</dd></div>
+                <div><dt>Monday - Wednesday</dt><dd>11:30 AM - 08:30 PM</dd></div>
+                <div><dt>Friday - Sunday</dt><dd>11:30 AM - 08:30 PM</dd></div>
+                <div><dt>Thursday</dt><dd>Closed</dd></div>
               </dl>
             </section>
           </div>

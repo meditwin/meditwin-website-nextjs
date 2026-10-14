@@ -1,0 +1,25 @@
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.card { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; min-width: 0; padding: 26px; border: 1px solid #d9d5e8; border-radius: 20px; background: transparent; color: #171717; text-align: left; font: inherit; cursor: pointer; transition: transform 220ms ease, box-shadow 220ms ease; }
+.imageWrap { position: relative; display: block; width: 48px; height: 42px; }
+.image { object-fit: contain; }
+.name { display: block; font-size: 21px; line-height: 1.4; }
+.description { display: block; font-size: 13px; line-height: 1.5; overflow-wrap: anywhere; white-space: pre-line; }
+.selected { border-color: #0066ff; box-shadow: inset 0 0 0 1px #0066ff; }
+.specialties .card.card:not(:disabled):is(:hover, :focus-visible) { background: rgb(255 255 255 / 25%) !important; color: #171717 !important; border-color: #0066ff !important; }
+.carousel { position: relative; padding-inline: 56px; }
+.slider { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: calc((100% - 44px) / 3); overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-block: 8px 18px; margin-block: -8px -18px; }
+.slider::-webkit-scrollbar { display: none; }
+.slider .card { scroll-snap-align: start; }
+.controls { position: absolute; inset: 0; display: flex; align-items: center; justify-content: space-between; pointer-events: none; }
+.controls button { display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid #d9d5e8; border-radius: 50%; background: #fff; color: #0057d9; font-size: 28px; cursor: pointer; pointer-events: auto; }
+.specialties :is(button, [tabindex]):focus-visible { outline: 2px solid #003ecc; outline-offset: -3px; }
+.notice { text-align: center; padding: 28px 0; margin: 0; }
+.error { text-align: center; color: #a51e3a; margin: 0; padding: 24px 0; }
+@media (max-width: 850px) { .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .slider { grid-template-columns: none; grid-auto-columns: calc((100% - 22px) / 2); } .card { padding: 22px; } .name { font-size: 19px; } }
+@media (max-width: 575px) { .cards { grid-template-columns: 1fr; } .slider { grid-template-columns: none; grid-auto-columns: 100%; } .description { font-size: 14px; } }
+@media (max-width: 575px) { .carousel { padding-inline: 44px; } .controls button { width: 36px; height: 36px; } }
+@media (hover: hover) and (pointer: fine) {
+  .card:hover { transform: translateY(-5px); box-shadow: 0 8px 16px rgb(21 39 84 / 12%); }
+  .card.selected:hover { box-shadow: inset 0 0 0 1px #0066ff, 0 8px 16px rgb(21 39 84 / 12%); }
+}
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } .card:hover { transform: none; } }
