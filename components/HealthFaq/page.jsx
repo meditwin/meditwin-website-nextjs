@@ -2,7 +2,7 @@ import Link from "next/link";
 import "./health-faq.css";
 
 const faqs = [
-  { question: "When is the clinic open?", answer: "We open everyday from 6 PM to 8:30 PM. This lets you come in after work." },
+  { question: "When is the clinic open?", answer: "We open everyday from 11:30 AM to 8:30 PM except thursday. This lets you come in after work." },
   { question: "Where are you located?", answer: "We are on the second floor of Aahirini Market in Action Area I, Newtown." },
   { question: "Do you sell glasses?", answer: "Yes. We run an in-house optical store with frames, lenses, and sunglasses." },
   { question: "Do I need an appointment?", answer: "We take walk-ins, but booking ahead saves you from waiting in the lobby." },
