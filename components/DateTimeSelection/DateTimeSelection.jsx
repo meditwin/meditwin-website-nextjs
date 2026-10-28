@@ -7,7 +7,7 @@ import { clinicTime } from "../DoctorSelection/doctors";
 import { calendarDays, displayTime, doctorSchedule } from "./slots";
 import styles from "./date-time-selection.module.css";
 
-export default function DateTimeSelection({ doctorId, medicalId, departmentId, selectedSlot, onSelect }) {
+export default function DateTimeSelection({ doctorId, medicalId, departmentId, availabilityId, selectedSlot, onSelect }) {
     const [schedule, setSchedule] = useState({});
     const [loading, setLoading] = useState(Boolean(doctorId));
     const [error, setError] = useState("");
@@ -33,7 +33,7 @@ export default function DateTimeSelection({ doctorId, medicalId, departmentId, s
                     page += 1;
                 } while (page <= lastPage && !controller.signal.aborted);
                 if (controller.signal.aborted) return;
-                const nextSchedule = doctorSchedule(records, { doctorId, medicalId, departmentId });
+                const nextSchedule = doctorSchedule(availabilityId == null ? records : records.filter((record) => String(record._id) === String(availabilityId)), { doctorId, medicalId, departmentId });
                 const dates = Object.keys(nextSchedule).sort();
                 const initialDate = dates.find((value) => nextSchedule[value].some((slot) => !slot.booked)) || dates[0] || "";
                 setSchedule(nextSchedule);
@@ -47,7 +47,7 @@ export default function DateTimeSelection({ doctorId, medicalId, departmentId, s
         }
         load();
         return () => controller.abort();
-    }, [doctorId, medicalId, departmentId]);
+    }, [doctorId, medicalId, departmentId, availabilityId]);
 
     function moveMonth(offset) {
         const [year, number] = month.split("-").map(Number);
@@ -58,7 +58,7 @@ export default function DateTimeSelection({ doctorId, medicalId, departmentId, s
     if (!doctorId) return <p className={styles.notice}>Please go back and select a doctor.</p>;
     if (loading) return <p className={styles.notice} role="status">Loading available dates and times...</p>;
     if (error) return <p className={styles.error} role="alert">{error}</p>;
-    if (!Object.keys(schedule).length) return <p className={styles.notice}>No upcoming dates or times are available for this doctor. Please select another doctor.</p>;
+    if (!Object.keys(schedule).length) return <p className={styles.notice}>{availabilityId != null ? "No new dates or times are available for this appointment. Please contact the clinic." : "No upcoming dates or times are available for this doctor. Please select another doctor."}</p>;
 
     const monthDate = new Date(`${month}-01T12:00:00`);
     return (

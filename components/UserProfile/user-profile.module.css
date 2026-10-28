@@ -1,0 +1,204 @@
+.dialog {
+    width: min(660px, calc(100vw - 28px));
+    max-height: calc(100dvh - 32px);
+    margin: auto;
+    padding: 0;
+    overflow-y: auto;
+    border: 0;
+    border-radius: 24px;
+    color: #171717;
+    color-scheme: light;
+    background: linear-gradient(155deg, #ffd0f8, #eadefc 48%, #cbf3ff);
+    box-shadow: 0 24px 80px #0005;
+    overscroll-behavior: contain;
+}
+
+.dialog::backdrop {
+    background: #000b;
+}
+
+.dialog dialog {
+    margin: auto;
+}
+
+.content {
+    position: relative;
+    padding: 32px clamp(20px, 5vw, 42px);
+}
+
+.title {
+    margin: 0 24px 26px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 500;
+    outline: none;
+}
+
+.close {
+    position: absolute;
+    right: 12px;
+    top: 10px;
+    width: 34px;
+    height: 34px;
+    border: 0;
+    border-radius: 50%;
+    font-size: 25px;
+    background: #ffffff7a;
+    color: #25304e;
+}
+
+.form .fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.form input[readonly],
+.form textarea[readonly] {
+    background: #ffffff66;
+}
+
+.form :disabled {
+    cursor: default;
+}
+
+.gender {
+    text-transform: capitalize;
+}
+
+.editHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.editHeader p {
+    margin: 0;
+    color: #43546a;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.editHeader button {
+    flex-shrink: 0;
+}
+
+.form[data-editing="true"] :is(input, textarea):not([readonly]):not(:disabled),
+.form[data-editing="true"] select:not(:disabled) {
+    border-color: #5898e9;
+    background: #fff;
+}
+
+.form :is(input, textarea):not([readonly]):not(:disabled) {
+    cursor: text;
+}
+
+.form select:not(:disabled) {
+    cursor: pointer;
+}
+
+.form :is(input, textarea):not([readonly]):focus,
+.form select:focus {
+    outline: 2px solid #075ad2;
+    outline-offset: 2px;
+    box-shadow: 0 0 0 4px #418dff24;
+}
+
+.form :is(input[type="email"], input[type="tel"])[readonly] {
+    background: #e9edf3;
+    color: #5b6779;
+    cursor: not-allowed;
+}
+
+.lockedHelp {
+    display: block;
+    margin-top: 5px;
+    color: #5b6779;
+    font-size: 11px;
+}
+
+.documents {
+    margin-top: 24px;
+    font-size: 13px;
+}
+
+.documents h3 {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.documents ul {
+    padding-left: 18px;
+    margin: 0 0 16px;
+}
+
+.documents li {
+    margin: 6px 0;
+    overflow-wrap: anywhere;
+}
+
+.documents a {
+    color: #0057b8;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.documents p {
+    margin-bottom: 12px;
+}
+
+.actions {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 26px;
+}
+
+.secondary {
+    border: 1px solid #449aff;
+    border-radius: 26px;
+    padding: 12px 24px;
+    background: transparent;
+    color: #0057b8;
+    font: inherit;
+    font-size: 14px;
+}
+
+.success {
+    margin-top: 20px;
+    text-align: center;
+    color: #116b3b;
+    font-size: 14px;
+}
+
+.locationError {
+    margin-top: 16px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #6e4a18;
+}
+
+.locationError button {
+    border: 0;
+    border-radius: 4px;
+    background: transparent;
+    color: #0057b8;
+    text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+    .editHeader {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .form .fields {
+        grid-template-columns: 1fr;
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+}

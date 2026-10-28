@@ -33,7 +33,7 @@ export default function Banner({ storyUrl }) {
           Dr. Sayantan Ghosh (Eye Surgeon) and Dr. Arunima Haldar (Gynecologist) provide specialized medical care in Action Area I.<br />Visit our local New Town clinic for comprehensive eye care, women's health consultations, and clinical treatments.
         </p>
         <div className="d-flex justify-content-center flex-wrap medi-banner-actions">
-          <Link href="#" className="btn medi-banner-appointment">
+          <Link href="/login" className="btn medi-banner-appointment">
             Book Appointment
           </Link>
           {storyUrl ? (

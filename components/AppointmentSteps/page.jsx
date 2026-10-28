@@ -32,7 +32,7 @@ export default function AppointmentSteps() {
             </li>
           ))}
         </ol>
-        <div className="text-center medi-steps-footer"><Link href="#" className="btn medi-steps-book">Book Appointment</Link></div>
+        <div className="text-center medi-steps-footer"><Link href="/login" className="btn medi-steps-book">Book Appointment</Link></div>
       </div>
     </section>
   );

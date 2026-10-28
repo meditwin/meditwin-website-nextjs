@@ -25,7 +25,7 @@ function CameraIcon() {
     );
 }
 
-function UploadField({ kind, label, file, onSelect, disabled }) {
+export function UploadField({ kind, label, file, onSelect, disabled, initialPreview = "" }) {
     const dialog = useRef(null);
     const input = useRef(null);
     const nativeCamera = useRef(null);
@@ -144,10 +144,10 @@ function UploadField({ kind, label, file, onSelect, disabled }) {
         <div className={styles.uploadField}>
             {isProfile ? (
                 <>
-                    <button ref={trigger} type="button" className={styles.profileButton} disabled={disabled} onClick={() => dialog.current?.showModal()}>
-                        {preview ? (
+                    <button ref={trigger} type="button" className={styles.profileButton} aria-label={label} disabled={disabled} onClick={() => dialog.current?.showModal()}>
+                        {preview || initialPreview ? (
                             // eslint-disable-next-line @next/next/no-img-element
-                            <img src={preview} className={styles.profilePreview} alt="Profile preview" />
+                            <img src={preview || initialPreview} className={styles.profilePreview} alt="Profile preview" />
                         ) : (
                             <svg className={styles.profilePlaceholder} viewBox="0 0 48 48" fill="none" stroke="currentColor" strokeWidth="1.6">
                                 <circle cx="24" cy="17" r="8" />

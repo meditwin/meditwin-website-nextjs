@@ -10,7 +10,7 @@ const galleryImages = [
   { src: "/images/gallery/img3.jpg", alt: "Care-n-Cure Clinic gallery image 3" },
   { src: "/images/gallery/img4.jpg", alt: "Care-n-Cure Clinic gallery image 4" },
   { src: "/images/gallery/img5.jpg", alt: "Care-n-Cure Clinic gallery image 5" },
-  { src: "/images/gallery/img6.png", alt: "Care-n-Cure Clinic gallery image 6" },
+  // { src: "/images/gallery/img6.png", alt: "Care-n-Cure Clinic gallery image 6" },
   // { src: "/images/gallery/img7.png", alt: "Care-n-Cure Clinic gallery image 7" },
   // { src: "/images/gallery/img8.png", alt: "Care-n-Cure Clinic gallery image 8" },
   // { src: "/images/gallery/img9.png", alt: "Care-n-Cure Clinic gallery image 9" },

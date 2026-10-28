@@ -54,7 +54,7 @@ export default function MaternalCare() {
                 </li>
               ))}
             </ul>
-            <Link href="#" className={`btn ${styles.book}`}>Book Now</Link>
+            <Link href="/login" className={`btn ${styles.book}`}>Book Now</Link>
           </div>
           <div className={styles.imageFrame}>
             <Image

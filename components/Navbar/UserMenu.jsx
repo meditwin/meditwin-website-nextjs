@@ -7,12 +7,10 @@ import styles from "./user-menu.module.css";
 
 export default function UserMenu({ onNavigate }) {
     const router = useRouter();
-    const { user, logout } = useAuth();
+    const { logout } = useAuth();
     const [open, setOpen] = useState(false);
-    const [view, setView] = useState("profile");
     const container = useRef(null);
     const trigger = useRef(null);
-    const dialog = useRef(null);
 
     useEffect(() => {
         function outside(event) {
@@ -24,8 +22,8 @@ export default function UserMenu({ onNavigate }) {
 
     function showView(nextView) {
         setOpen(false);
-        setView(nextView);
-        dialog.current.showModal();
+        onNavigate?.();
+        router.push(nextView === "profile" ? "/profile" : "/booking-history");
     }
 
     function handleLogout() {
@@ -36,6 +34,7 @@ export default function UserMenu({ onNavigate }) {
     }
 
     return (
+        <>
         <div
             ref={container}
             className={styles.account}
@@ -92,33 +91,7 @@ export default function UserMenu({ onNavigate }) {
                     </ul>
                 </div>
             )}
-            <dialog
-                ref={dialog}
-                className={styles.dialog}
-                aria-labelledby="account-dialog-title"
-                onClick={(event) => {
-                    if (event.target === event.currentTarget) dialog.current.close();
-                }}
-            >
-                <div className={styles.dialogHeading}>
-                    <h2 id="account-dialog-title">{view === "profile" ? "My Profile" : "Booking History"}</h2>
-                    <button type="button" aria-label="Close" onClick={() => dialog.current.close()}>
-                        ×
-                    </button>
-                </div>
-                {view === "profile" ? (
-                    <dl className={styles.profile}>
-                        <dt>Full Name</dt>
-                        <dd>{user?.name || "Not provided"}</dd>
-                        <dt>Email</dt>
-                        <dd>{user?.email || "Not provided"}</dd>
-                        <dt>Phone Number</dt>
-                        <dd>{user?.mobile || "Not provided"}</dd>
-                    </dl>
-                ) : (
-                    <p className={styles.historyNote}>Booking history is not available yet.</p>
-                )}
-            </dialog>
         </div>
+        </>
     );
 }

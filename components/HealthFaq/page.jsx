@@ -16,7 +16,7 @@ export default function HealthFaq() {
         <div className=  "container-xxl  medi-health-container">
           <h2 id="medi-health-title">Fix Your Health Issues</h2>
           <p>Stop ignoring the pain or blurry vision. Let our doctors figure out what is wrong and get you back on track.</p>
-          <Link href="#" className="btn medi-health-book">Book Appointment</Link>
+          <Link href="/login" className="btn medi-health-book">Book Appointment</Link>
         </div>
       </section>
       <section className="medi-faq" aria-labelledby="medi-faq-title">

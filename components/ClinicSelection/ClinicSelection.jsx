@@ -9,6 +9,7 @@ import styles from "./clinic-selection.module.css";
 import SupportedSpecialties from "../SupportedSpecialties/SupportedSpecialties";
 import DoctorSelection from "../DoctorSelection/DoctorSelection";
 import DateTimeSelection from "../DateTimeSelection/DateTimeSelection";
+import BookingCheckout from "../BookingCheckout/BookingCheckout";
 
 const steps = ["Select Clinic", "Supported Specialties", "Select Doctor", "Select Date & Time"];
 const stepUrls = ["clinic", "specialties", "doctor", "date-time"];
@@ -35,7 +36,11 @@ export default function ClinicSelection({ clinics: suppliedClinics, onSelectClin
     const [selectedDepartment, setSelectedDepartment] = useState(null);
     const [selectedDoctor, setSelectedDoctor] = useState(null);
     const [selectedSlot, setSelectedSlot] = useState(null);
-    const step = Math.max(0, stepUrls.indexOf(searchParams.get("step")));
+    const [checkoutOpen, setCheckoutOpen] = useState(false);
+    const [scheduleRevision, setScheduleRevision] = useState(0);
+    const requestedStep = Math.max(0, stepUrls.indexOf(searchParams.get("step")));
+    const allowedStep = selectedId == null ? 0 : !selectedDepartment ? 1 : !selectedDoctor ? 2 : 3;
+    const step = Math.min(requestedStep, allowedStep);
     const [error, setError] = useState("");
     const [medicalClinics, setMedicalClinics] = useState([]);
     const [loading, setLoading] = useState(suppliedClinics === undefined);
@@ -43,8 +48,38 @@ export default function ClinicSelection({ clinics: suppliedClinics, onSelectClin
     const heading = useRef(null);
     const clinics = suppliedClinics ?? medicalClinics;
     const selectedClinic = clinics.find((clinic) => clinic.id === selectedId);
-    const medicalId = selectedClinic?.id ?? searchParams.get("medical_id") ?? undefined;
-    const departmentId = selectedDepartment?.id ?? searchParams.get("department_id") ?? undefined;
+    const medicalId = selectedClinic?.id;
+    const departmentId = selectedDepartment?.id;
+
+    useEffect(() => {
+        if (requestedStep === step) return;
+        const params = new URLSearchParams(searchParams.toString());
+        if (step === 0) params.delete("step");
+        else params.set("step", stepUrls[step]);
+        if (step === 0) params.delete("medical_id");
+        if (step <= 1) params.delete("department_id");
+        params.delete("doctor_id");
+        const query = params.toString();
+        router.replace(`/booking${query ? `?${query}` : ""}`, { scroll: false });
+    }, [requestedStep, step, searchParams, router]);
+
+    useEffect(() => {
+        function resetOnHistoryNavigation() {
+            setSelectedId(null);
+            setSelectedDepartment(null);
+            setSelectedDoctor(null);
+            setSelectedSlot(null);
+            setCheckoutOpen(false);
+            setError("");
+            if (window.location.pathname !== "/booking") return;
+            const params = new URLSearchParams(window.location.search);
+            for (const key of ["step", "medical_id", "department_id", "doctor_id"]) params.delete(key);
+            const query = params.toString();
+            router.replace(`/booking${query ? `?${query}` : ""}`, { scroll: false });
+        }
+        window.addEventListener("popstate", resetOnHistoryNavigation);
+        return () => window.removeEventListener("popstate", resetOnHistoryNavigation);
+    }, [router]);
 
     useEffect(() => {
         if (suppliedClinics !== undefined) return;
@@ -102,9 +137,14 @@ export default function ClinicSelection({ clinics: suppliedClinics, onSelectClin
                 onNext(selectedClinic, selectedDepartment, selectedDoctor, selectedSlot);
                 return;
             }
+            setCheckoutOpen(true);
             return;
         }
         if (step === 0) {
+            if (!selectedClinic) {
+                setError("Please select a clinic to continue.");
+                return;
+            }
             setSelectedDepartment(null);
             setSelectedDoctor(null);
             navigateStep(1, { department_id: null, doctor_id: null });
@@ -134,7 +174,15 @@ export default function ClinicSelection({ clinics: suppliedClinics, onSelectClin
 
     function back() {
         if (step > 0) {
-            navigateStep(step - 1);
+            const previousStep = step - 1;
+            if (previousStep === 0) setSelectedId(null);
+            if (previousStep <= 1) setSelectedDepartment(null);
+            setSelectedDoctor(null);
+            navigateStep(previousStep, {
+                ...(previousStep === 0 ? { medical_id: null } : {}),
+                ...(previousStep <= 1 ? { department_id: null } : {}),
+                doctor_id: null,
+            });
             setError("");
             heading.current?.focus();
         } else if (onBack) onBack();
@@ -152,7 +200,7 @@ export default function ClinicSelection({ clinics: suppliedClinics, onSelectClin
                             aria-current={index === step ? "step" : undefined}
                         >
                             {index <= 2 ? (
-                                <button type="button" className={styles.stepButton} onClick={() => navigateStep(index)} aria-current={index === step ? "step" : undefined}>
+                                <button type="button" className={styles.stepButton} disabled aria-current={index === step ? "step" : undefined}>
                                     {label}
                                 </button>
                             ) : (
@@ -247,8 +295,8 @@ export default function ClinicSelection({ clinics: suppliedClinics, onSelectClin
                         />
                     ) : (
                         <DateTimeSelection
-                            key={`${medicalId || "all"}:${departmentId || "all"}:${selectedDoctor?.id || searchParams.get("doctor_id") || "none"}`}
-                            doctorId={selectedDoctor?.id || searchParams.get("doctor_id")}
+                            key={`${medicalId || "all"}:${departmentId || "all"}:${selectedDoctor?.id || "none"}:${scheduleRevision}`}
+                            doctorId={selectedDoctor?.id}
                             medicalId={medicalId}
                             departmentId={departmentId}
                             selectedSlot={selectedSlot}
@@ -272,12 +320,28 @@ export default function ClinicSelection({ clinics: suppliedClinics, onSelectClin
                 <button
                     type="button"
                     className={styles.nextButton}
-                    disabled={(step === 3 && !selectedSlot) || (step === 1 && !selectedDepartment) || (step === 2 && !selectedDoctor)}
+                    disabled={(step === 0 && !selectedClinic) || (step === 3 && !selectedSlot) || (step === 1 && !selectedDepartment) || (step === 2 && !selectedDoctor)}
                     onClick={next}
                 >
                     Next
                 </button>
             </div>
+            {step === 3 && selectedClinic && selectedDepartment && selectedDoctor && selectedSlot && (
+                <BookingCheckout
+                    key={selectedSlot.id}
+                    open={checkoutOpen}
+                    clinic={selectedClinic}
+                    department={selectedDepartment}
+                    doctor={selectedDoctor}
+                    slot={selectedSlot}
+                    onClose={() => setCheckoutOpen(false)}
+                    onComplete={() => {
+                        setCheckoutOpen(false);
+                        setSelectedSlot(null);
+                        setScheduleRevision((revision) => revision + 1);
+                    }}
+                />
+            )}
         </section>
     );
 }
