@@ -65,6 +65,8 @@
 }
 
 .clinic {
+  display: flex;
+  flex-direction: column;
   min-width: 0;
   border-radius: 20px;
   outline: 2px solid transparent;
@@ -77,6 +79,7 @@
 }
 
 .imageWrap {
+  flex-shrink: 0;
   position: relative;
   width: 100%;
   aspect-ratio: 1.58;
@@ -114,10 +117,14 @@
 }
 
 .details {
-  padding: 20px 7px 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 20px 7px 18px;
 }
 
 .details h3 {
+  flex: 1;
   margin: 0 0 10px;
   font-size: clamp(18px, 1.8vw, 23px);
   font-weight: 500;
@@ -162,6 +169,7 @@
 }
 
 .selectButton {
+  align-self: flex-start;
   font-size: 12px;
   min-height: 36px;
   padding: 8px 19px;

@@ -1,6 +1,7 @@
 import Image from "next/image";
 import logo from "../../public/images/logo/medi-logo.png";
 import LoginForm from "./LoginForm";
+import LoginAccess from "./LoginAccess";
 import styles from "./login.module.css";
 
 export const metadata = {
@@ -9,6 +10,7 @@ export const metadata = {
 
 export default function LoginPage() {
   return (
+    <LoginAccess>
     <main className={styles.page} data-login-page>
       <section className={styles.card} aria-labelledby="login-heading">
         <Image
@@ -30,5 +32,6 @@ export default function LoginPage() {
         </p>
       </section>
     </main>
+    </LoginAccess>
   );
 }

@@ -81,7 +81,9 @@ export default function Navbar() {
             <div className="medi-nav-actions">
               {pathname === "/booking" || pathname === "/profile" || pathname === "/booking-history" ? <UserMenu onNavigate={closeMenus} /> : <>
               <PlayStoreButton onClick={closeMenus} />
+              
               <Link href="/login" className="btn medi-appointment" onClick={closeMenus}>Book Appointment</Link>
+              <Link href="/login" className="btn medi-appointment" onClick={closeMenus}>Login</Link>
               </>}
             </div>
           </div>

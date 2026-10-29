@@ -172,7 +172,7 @@ export function UploadField({ kind, label, file, onSelect, disabled, initialPrev
                         <UploadIcon />
                     )}
                     <span>
-                        {file ? "Change Document" : "Upload Document"} <span className={styles.required}>*</span>
+                        {file ? "Change Document" : "Upload Document"} (Optional)
                     </span>
                     <small>{file?.name || "JPG, PNG or PDF (Max 5MB)"}</small>
                     <span className={styles.cameraHint}>Camera or upload file</span>
@@ -367,8 +367,8 @@ export default function ProfileForm() {
             return;
         }
 
-        if (!profile || !document) {
-            setError("Please upload profile image and document.");
+        if (!profile) {
+            setError("Please upload profile image.");
             return;
         }
 
@@ -388,14 +388,14 @@ export default function ProfileForm() {
                 user_role: 4,
                 verification_status: 1,
                 status: 1,
-                documents: [{ name: "Profile Document", file: null }]
+                documents: document ? [{ name: "Profile Document", file: null }] : []
             };
 
             const formData = new FormData();
 
             formData.append("user_data", JSON.stringify(userData));
             formData.append("profile_image", profile);
-            formData.append("documents", document);
+            if (document) formData.append("documents", document);
 
             await completeProfile(formData);
 
@@ -444,6 +444,7 @@ export default function ProfileForm() {
                         </option>
                         <option value="male">Male</option>
                         <option value="female">Female</option>
+                        <option value="other">Other</option>
                     </select>
                 </label>
 
