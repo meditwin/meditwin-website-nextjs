@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../../context/AuthContext";
+import { profileAssetUrl, profileValues } from "../../components/UserProfile/profile";
 import styles from "../register/register.module.css";
 
 const API_URL = (process.env.NEXT_PUBLIC_API_URL || "https://api.carencurewellness.com").replace(/\/+$/, "");
@@ -159,7 +160,7 @@ export function UploadField({ kind, label, file, onSelect, disabled, initialPrev
                         </span>
                     </button>
                     <p className={styles.profileLabel}>
-                        Profile Image <span className={styles.required}>*</span>
+                        Profile Image (Optional)
                     </p>
                     <p className={styles.profileHelp}>{file?.name || "JPG or PNG (Max 5MB)"}</p>
                 </>
@@ -251,6 +252,7 @@ export function UploadField({ kind, label, file, onSelect, disabled, initialPrev
 export default function ProfileForm() {
     const router = useRouter();
     const { completeProfile, user } = useAuth();
+    const savedValues = profileValues(user);
 
     const [profile, setProfile] = useState(null);
     const [document, setDocument] = useState(null);
@@ -259,14 +261,14 @@ export default function ProfileForm() {
     const [states, setStates] = useState([]);
     const [cities, setCities] = useState([]);
 
-    const [country, setCountry] = useState("");
-    const [state, setState] = useState("");
-    const [city, setCity] = useState("");
+    const [country, setCountry] = useState(savedValues.country);
+    const [state, setState] = useState(savedValues.state);
+    const [city, setCity] = useState(savedValues.city);
 
     const [loading, setLoading] = useState(false);
     const [countryLoading, setCountryLoading] = useState(true);
-    const [stateLoading, setStateLoading] = useState(false);
-    const [cityLoading, setCityLoading] = useState(false);
+    const [stateLoading, setStateLoading] = useState(Boolean(savedValues.country));
+    const [cityLoading, setCityLoading] = useState(Boolean(savedValues.country && savedValues.state));
 
     const [error, setError] = useState("");
 
@@ -367,11 +369,6 @@ export default function ProfileForm() {
             return;
         }
 
-        if (!profile) {
-            setError("Please upload profile image.");
-            return;
-        }
-
         setLoading(true);
 
         try {
@@ -394,7 +391,7 @@ export default function ProfileForm() {
             const formData = new FormData();
 
             formData.append("user_data", JSON.stringify(userData));
-            formData.append("profile_image", profile);
+            if (profile) formData.append("profile_image", profile);
             if (document) formData.append("documents", document);
 
             await completeProfile(formData);
@@ -417,13 +414,13 @@ export default function ProfileForm() {
     return (
         <form className={styles.form} onSubmit={submit}>
             <div className={styles.profileUpload}>
-                <UploadField kind="profile" label="Profile Image" file={profile} onSelect={setProfile} disabled={loading} />
+                <UploadField kind="profile" label="Profile Image" file={profile} onSelect={setProfile} disabled={loading} initialPreview={profileAssetUrl(user.profile_image || user.profile_picture)} />
             </div>
 
             <fieldset className={styles.fields} disabled={loading}>
                 <label className={styles.field}>
                     Full Name <span className={styles.required}>*</span>
-                    <input name="fullName" placeholder="Enter your name" autoComplete="name" maxLength={120} required />
+                    <input name="fullName" defaultValue={savedValues.name} placeholder="Enter your name" autoComplete="name" maxLength={120} required />
                 </label>
 
                 <label className={styles.field}>
@@ -438,7 +435,7 @@ export default function ProfileForm() {
 
                 <label className={styles.field}>
                     Gender <span className={styles.required}>*</span>
-                    <select name="gender" defaultValue="" required>
+                    <select name="gender" defaultValue={savedValues.gender} required>
                         <option value="" disabled>
                             Select Gender
                         </option>
@@ -511,12 +508,12 @@ export default function ProfileForm() {
 
                 <label className={styles.field}>
                     Pincode <span className={styles.required}>*</span>
-                    <input name="pincode" placeholder="Enter your pincode" autoComplete="postal-code" maxLength={12} required />
+                    <input name="pincode" defaultValue={savedValues.zipcode} placeholder="Enter your pincode" autoComplete="postal-code" maxLength={12} required />
                 </label>
 
                 <label className={`${styles.field} ${styles.address}`}>
                     Address <span className={styles.required}>*</span>
-                    <textarea name="address" placeholder="Enter your full address" autoComplete="street-address" rows={3} maxLength={500} required />
+                    <textarea name="address" defaultValue={savedValues.location} placeholder="Enter your full address" autoComplete="street-address" rows={3} maxLength={500} required />
                 </label>
             </fieldset>
 
