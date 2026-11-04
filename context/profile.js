@@ -1,6 +1,6 @@
 export function isProfileComplete(user) {
   if (!user || Number(user.user_role ?? user.role) !== 4 || Number(user.verification_status) !== 1) return false;
-  const fields = [user.name, user.email, user.gender, user.country, user.state, user.city, user.location ?? user.locality, user.zipcode];
+  const fields = [user.name, user.email, user.mobile || user.mobile_no, user.gender, user.country, user.state, user.city, user.location ?? user.locality, user.zipcode];
   return fields.every((value) => value != null && String(value).trim() !== "");
 }
 

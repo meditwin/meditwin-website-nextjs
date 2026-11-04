@@ -360,11 +360,11 @@ export default function ProfileForm() {
         const name = String(data.fullName || "").trim();
         const email = user.email;
         const gender = String(data.gender || "").trim();
-        // const mobile = String(data.phoneNumber || "").trim();
+        const mobile = String(data.phoneNumber || "").trim();
         const zipcode = String(data.pincode || "").trim();
         const address = String(data.address || "").trim();
 
-        if (!name || !email || !gender || !country || !state || !city || !zipcode || !address) {
+        if (!name || !email || !mobile || !gender || !country || !state || !city || !zipcode || !address) {
             setError("Please fill in all required fields.");
             return;
         }
@@ -375,7 +375,7 @@ export default function ProfileForm() {
             const userData = {
                 name,
                 email,
-                // mobile,
+                mobile,
                 gender,
                 country: String(country),
                 state: String(state),
@@ -428,10 +428,10 @@ export default function ProfileForm() {
                     <input name="email" type="email" value={user.email} readOnly autoComplete="email" required />
                 </label>
 
-                {/* <label className={styles.field}>
+                <label className={styles.field}>
                     Phone Number <span className={styles.required}>*</span>
-                    <input name="phoneNumber" type="tel" placeholder="Enter your phone number" autoComplete="tel" required />
-                </label> */}
+                    <input name="phoneNumber" type="tel" defaultValue={user.mobile || user.mobile_no || ""} placeholder="Enter your phone number" autoComplete="tel" required />
+                </label>
 
                 <label className={styles.field}>
                     Gender <span className={styles.required}>*</span>
