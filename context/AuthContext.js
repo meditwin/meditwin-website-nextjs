@@ -72,7 +72,7 @@ export function AuthProvider({ children }) {
             _id: userData._id ?? null,
             name: userData.name ?? "",
             email: userData.email ?? emailAddress,
-            mobile: userData.mobile ?? "",
+            mobile: userData.mobile ?? userData.mobile_no ?? "",
             user_role: userData.user_role ?? null,
             verification_status: userData.verification_status ?? 1,
             profile_image: userData.profile_image ?? null
@@ -165,6 +165,93 @@ export function AuthProvider({ children }) {
         [saveAuthenticatedUser, refreshUser]
     );
 
+
+    // ====================================
+    // MOBILE LOGIN - SEND OTP
+    // ====================================
+
+    const sendMobileOtp = useCallback(async (mobile) => {
+        const input = String(mobile || "").replace(/\D/g, "");
+
+        const digits =
+            input.length === 12 && input.startsWith("91")
+                ? input.slice(2)
+                : input;
+
+        if (!/^[6-9]\d{9}$/.test(digits)) {
+            throw new Error("Enter a valid 10-digit Indian mobile number.");
+        }
+
+        const normalizedMobile = `${digits}`;
+
+        const { data } = await axios.post(
+            `${API_BASE_URL}/users/login/`,
+            { mobile: normalizedMobile },
+            { timeout: 30000 }
+        );
+
+        if (data?.status !== "success") {
+            throw new Error(data?.message || "Unable to send mobile OTP.");
+        }
+
+        return {
+            ...data,
+            mobile: normalizedMobile,
+            newuserstatus: Boolean(data.newuserstatus)
+        };
+    }, []);
+
+    // ====================================
+    // MOBILE LOGIN - VERIFY OTP
+    // ====================================
+
+    const verifyMobileOtp = useCallback(
+        async (mobile, otp) => {
+            const otpValue = String(otp ?? "").trim();
+
+            if (!/^\d{4,9}$/.test(otpValue)) {
+                throw new Error("Enter a valid OTP.");
+            }
+
+            const { data } = await axios.post(
+                `${API_BASE_URL}/user/login-verify-otp`,
+                null,
+                {
+                    params: {
+                        mobile,
+                        otp: otpValue
+                    },
+                    timeout: 30000
+                }
+            );
+
+            if (data?.status !== "success" || !data?.access_token) {
+                throw new Error(
+                    data?.message || "Invalid or expired OTP."
+                );
+            }
+
+            saveAuthenticatedUser(data);
+
+            try {
+                const profile = await refreshUser(data.access_token);
+
+                return {
+                    ...data,
+                    user: profile,
+                    needsProfileCompletion: !isProfileComplete(profile)
+                };
+            } catch {
+                return {
+                    ...data,
+                    needsProfileCompletion: true
+                };
+            }
+        },
+        [saveAuthenticatedUser, refreshUser]
+    );
+
+
     // ====================================
     // COMPLETE PROFILE - UPDATE THE VERIFIED ACCOUNT
     // ====================================
@@ -172,7 +259,16 @@ export function AuthProvider({ children }) {
     const completeProfile = useCallback(async (formData) => {
         if (!token || !(formData instanceof FormData)) throw new Error("Please log in first.");
         const payload = JSON.parse(formData.get("user_data") || "{}");
-        formData.set("user_data", JSON.stringify({ ...payload, email: user.email, user_role: 4, verification_status: 1 }));
+        formData.set(
+            "user_data",
+            JSON.stringify({
+                ...payload,
+                ...(user?.email ? { email: user.email } : {}),
+                user_role: 4,
+                verification_status: 1
+            })
+        );
+
         const { data } = await axios.put(API_BASE_URL + "/users", formData, {
             headers: { Authorization: "Bearer " + token }, timeout: 60000
         });
@@ -210,6 +306,8 @@ export function AuthProvider({ children }) {
 
             sendLoginOtp,
             verifyLoginOtp,
+            sendMobileOtp,
+            verifyMobileOtp,
 
             completeProfile,
             refreshUser,
@@ -219,7 +317,7 @@ export function AuthProvider({ children }) {
 
             logout
         }),
-        [user, token, authLoading, sendLoginOtp, verifyLoginOtp, completeProfile, refreshUser, profileChecked, authError, logout]
+        [user, token, authLoading, sendLoginOtp, verifyLoginOtp, sendMobileOtp, verifyMobileOtp, completeProfile, refreshUser, profileChecked, authError, logout]
     );
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;

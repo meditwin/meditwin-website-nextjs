@@ -358,9 +358,11 @@ export default function ProfileForm() {
         const data = Object.fromEntries(new FormData(e.currentTarget));
 
         const name = String(data.fullName || "").trim();
-        const email = user.email;
+        const email = String(data.email || user.email || "")
+            .trim()
+            .toLowerCase();
         const gender = String(data.gender || "").trim();
-        const mobile = String(data.phoneNumber || "").trim();
+        const mobile = String(user.mobile || user.mobile_no || data.phoneNumber || "").trim();
         const zipcode = String(data.pincode || "").trim();
         const address = String(data.address || "").trim();
 
@@ -425,12 +427,28 @@ export default function ProfileForm() {
 
                 <label className={styles.field}>
                     Email <span className={styles.required}>*</span>
-                    <input name="email" type="email" value={user.email} readOnly autoComplete="email" required />
+                    <input
+                        name="email"
+                        type="email"
+                        defaultValue={user.email || ""}
+                        readOnly={Boolean(user.email)}
+                        placeholder="Enter your email address"
+                        autoComplete="email"
+                        required
+                    />
                 </label>
 
                 <label className={styles.field}>
                     Phone Number <span className={styles.required}>*</span>
-                    <input name="phoneNumber" type="tel" defaultValue={user.mobile || user.mobile_no || ""} placeholder="Enter your phone number" autoComplete="tel" required />
+                    <input
+                        name="phoneNumber"
+                        type="tel"
+                        defaultValue={user.mobile || user.mobile_no || ""}
+                        readOnly={Boolean(user.mobile && !user.email)}
+                        placeholder="Enter your phone number"
+                        autoComplete="tel"
+                        required
+                    />
                 </label>
 
                 <label className={styles.field}>
