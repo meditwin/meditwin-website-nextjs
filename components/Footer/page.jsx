@@ -41,6 +41,22 @@ function SocialIcon({ name }) {
     );
   }
 
+
+    if (name === "Facebook") {
+    return (
+        <svg
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        aria-hidden="true"
+        >
+        <path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.23.2 2.23.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z" />
+        </svg>
+    );
+    }
+
+
   return null;
 }
 
@@ -76,6 +92,7 @@ function ContactIcon({ type }) {
 
 export default function Footer({
   socialLinks = {
+    Facebook: "https://www.facebook.com/CareNCure.EyeGynaeClinic/",
     Instagram: "https://www.instagram.com/carencurenwellness/?__pwa=1",
     YouTube: "https://www.youtube.com/@Meditwin-CnC"
   }
@@ -91,7 +108,7 @@ export default function Footer({
                         </Link>
                         <p>Care-n-Cure Wellness handles eye care and gynecology in Newtown, West Bengal. Honest medical advice from local doctors.</p>
                         <ul className="medi-footer-socials" aria-label="Social media">
-                            {["Instagram", "YouTube"].map((name) => (
+                            {["Facebook", "Instagram", "YouTube"].map((name) => (
                                 <li key={name}>
                                     {socialLinks[name] ? (
                                         <a
